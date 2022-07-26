@@ -1,3 +1,13 @@
+terraform {
+  required_providers {
+    aci = {
+      source  = "CiscoDevNet/aci"
+      version = "2.2.0"
+    }
+  }
+}
+
+
 resource "aci_tenant" "tenant" {
   name        = var.tenant_name
   description = "This tenant is created by terraform"
