@@ -35,7 +35,7 @@ resource "aci_bridge_domain" "bd" {
   tenant_dn                   = aci_tenant.tenant.id
   description                 = "bridge domain"
   name                        = "${var.tenant_name}_bd"
-  relation_fv_rs_ctx          = aci_vrf.vrf.name
+  relation_fv_rs_ctx          = aci_vrf.vrf.id
   optimize_wan_bandwidth      = "no"
   annotation                  = "tag_bd"
   arp_flood                   = "yes"
@@ -58,7 +58,7 @@ resource "aci_bridge_domain" "bd" {
 
 resource "aci_application_epg" "epg" {
   application_profile_dn = aci_application_profile.app_profile.id
-  relation_fv_rs_bd      = aci_bridge_domain.bd.name
+  relation_fv_rs_bd      = aci_bridge_domain.bd.id
   name                   = "${var.tenant_name}-epg"
   description            = "%s"
   annotation             = "tag_epg"
