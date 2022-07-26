@@ -65,7 +65,6 @@ resource "aci_application_epg" "epg" {
   exception_tag          = "0"
   flood_on_encap         = "disabled"
   has_mcast_source       = "no"
-  is_attr_based_e_pg     = "no"
   match_t                = "AtleastOne"
   name_alias             = "alias_epg"
   pc_enf_pref            = "unenforced"
@@ -75,9 +74,8 @@ resource "aci_application_epg" "epg" {
 }
 
 resource "aci_subnet" "subnet" {
-  bridge_domain_dn = aci_bridge_domain.bd.id
+  parent_dn        = aci_bridge_domain.bd.id
   ip               = var.gateway_address
   preferred        = "yes"
-  scope            = "private"
   description      = "This subnet is created by terraform"
 }
